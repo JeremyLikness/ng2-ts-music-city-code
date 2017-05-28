@@ -11,4 +11,5 @@ export class AppSettingsService {
   public maxR = 4; 
   public lowR = 0; 
   public highR = 4;
+  public iterations: number = 100;
 }
