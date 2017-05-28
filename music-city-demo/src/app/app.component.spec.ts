@@ -1,13 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
+import { AppSettingsService } from './app-settings.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [
         AppComponent
-      ],
+      ], 
+      providers: [AppSettingsService],
     }).compileComponents();
   }));
 
