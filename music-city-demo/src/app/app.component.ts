@@ -12,8 +12,33 @@ import { BifurcationService } from './bifurcation.service';
 export class AppComponent implements AfterViewInit {
   title = 'app works!';
 
+  private _lowR = 0;
+  private _highR = 0;
+
+  public get lowR(): number {
+    return this._lowR;
+  }
+
+  public set lowR(val: number) {
+    if (val >= this.appSettings.minR && val < this._highR) {
+      this._lowR = val;
+    }
+  }
+
+  public get highR(): number {
+    return this._highR;
+  }
+
+  public set highR(val: number) {
+    if (val <= this.appSettings.maxR && val > this._lowR) {
+      this._highR = val;
+    }
+  }
+
   constructor(public appSettings: AppSettingsService,
     public bifurcation: BifurcationService) {
+      this._lowR = appSettings.lowR; 
+      this._highR = appSettings.highR; 
   }
 
   public set iterations(val) {
@@ -34,6 +59,8 @@ export class AppComponent implements AfterViewInit {
   }
 
   renderCanvas() {
+    this.appSettings.lowR = this._lowR;
+    this.appSettings.highR = this._highR;
     let canvas = this.canvasElem.nativeElement as HTMLCanvasElement;
     let context = canvas.getContext('2d');
     context.clearRect(0, 0, this.appSettings.width, this.appSettings.height);

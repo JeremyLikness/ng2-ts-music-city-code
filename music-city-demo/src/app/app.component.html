@@ -6,5 +6,8 @@
   <option value="500">500</option>
   <option value="1000">1000</option>
 </select>
+Low R: <input type="range" [min]="appSettings.minR" [max]="appSettings.maxR" step="0.1" [(ngModel)]="lowR"/> {{lowR}}
+High R: <input type="range" [min]="appSettings.minR" [max]="appSettings.maxR" step="0.1" [(ngModel)]="highR"/> {{highR}}
+<button (click)="renderCanvas()">Re-render</button>
 <br/>
 <canvas width="1000" height="300" #canvasElem>Need a browser that supports canvas!</canvas>
