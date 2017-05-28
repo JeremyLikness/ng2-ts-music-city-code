@@ -14,7 +14,13 @@ export class AppComponent implements AfterViewInit {
 
   constructor(public appSettings: AppSettingsService,
     public bifurcation: BifurcationService) {
+  }
 
+  public set iterations(val) {
+    if (val > 0 && val <= 1000 && val !== this.appSettings.iterations) {
+      this.appSettings.iterations = val;
+      this.renderCanvas();
+    }
   }
 
   @ViewChild('canvasElem')
@@ -33,7 +39,6 @@ export class AppComponent implements AfterViewInit {
     context.clearRect(0, 0, this.appSettings.width, this.appSettings.height);
     context.fillStyle = 'rgba(32, 64, 128, 0.75)';
     let points = this.bifurcation.BuildDiagram();
-    console.log(`Got ${points.length} points!`);
     points.forEach(point => context.fillRect(point.x, point.y, 2, 2));
   }
 }

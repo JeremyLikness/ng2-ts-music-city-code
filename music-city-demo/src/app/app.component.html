@@ -1,4 +1,10 @@
 <h1>
   {{title}}
 </h1>
+<select #selection (change)="iterations=selection.options[selection.selectedIndex].value">
+  <option value="100" selected>100</option>
+  <option value="500">500</option>
+  <option value="1000">1000</option>
+</select>
+<br/>
 <canvas width="1000" height="300" #canvasElem>Need a browser that supports canvas!</canvas>
